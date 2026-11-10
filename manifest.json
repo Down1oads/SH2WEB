@@ -1,0 +1,42 @@
+{
+  ".nojekyll": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "CONTROLS.md": {
+    "bytes": 773,
+    "sha256": "1e84ed68bf8fc571c4eedf40990ad1add0d676bb859aa99f845bbd521c5430c0"
+  },
+  "index.html": {
+    "bytes": 2854,
+    "sha256": "9833052910417f3fc56a0f34030142ae04494449f888da745802275ae85bfe46"
+  },
+  "isolation-sw.js": {
+    "bytes": 880,
+    "sha256": "e28247ad55d95ae26e6d3e6ba5bd265c64ea2e3fbc332fdb1892d381608954c3"
+  },
+  "LICENSE-runtime.txt": {
+    "bytes": 1088,
+    "sha256": "a264d27e10ee6b584f09ca1d821490e3d4118fe63a0f36d21072f29df6088ca2"
+  },
+  "player.html": {
+    "bytes": 46624,
+    "sha256": "5da9663fe0ee773888d5e6d3dceb0a8cc44ad7e71edb8be060a3be44efcb1ce8"
+  },
+  "ps2web.data": {
+    "bytes": 3147951,
+    "sha256": "d0489e9cf7d439d2e6edd32e260359bb8fb9df585767b15638e9a11a388c0acc"
+  },
+  "ps2web.js": {
+    "bytes": 153495,
+    "sha256": "d53a60695ba20657652ba0856aa6670b0a58e740e4b0b2e78f85f6405ecde7b0"
+  },
+  "ps2web.wasm": {
+    "bytes": 12833850,
+    "sha256": "c38efe1b4625090f66c86458e64b518bf14d77f0ffc231f54475d948c9f5aca3"
+  },
+  "README.md": {
+    "bytes": 1837,
+    "sha256": "eb9d77ed024c6302f53a600c01bb17a40e5ac87e4be2ef77b6c0bbf46a667d01"
+  }
+}

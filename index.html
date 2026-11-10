@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Silent Hill 2 Web</title>
+<style>
+html,body{margin:0;height:100%;background:#000;color:#ccc;font:16px system-ui}main{box-sizing:border-box;min-height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;text-align:center}h1{font-size:28px;letter-spacing:4px;font-weight:400}p{max-width:540px;line-height:1.6}input{max-width:100%;padding:16px}iframe{position:fixed;inset:0;width:100%;height:100%;border:0;outline:0}a{color:#aaa}#message{color:#a1c49b} [hidden]{display:none!important}
+</style>
+<main id="setup">
+<h1>SILENT HILL 2</h1>
+<p>Select your Silent Hill 2 PS2 USA v2.01 ISO. The disc stays on your computer and is read locally.</p>
+<input id="disc" type="file" accept=".iso" aria-label="Select Silent Hill 2 ISO" disabled>
+<p id="message" role="status">Preparing the player…</p>
+<p>WASD to move · E to interact · Shift to run<br>Tab for map · I for inventory · F for flashlight</p>
+<p><a href="https://github.com/Down1oads/SH2WEB">Experimental build · tested through the observation deck</a></p>
+</main>
+<script>
+(async()=>{
+  const message=document.getElementById('message'),input=document.getElementById('disc');
+  try{
+    if(!('serviceWorker' in navigator))throw new Error('A browser with service workers is required.');
+    await navigator.serviceWorker.register('./isolation-sw.js');
+    await navigator.serviceWorker.ready;
+    if(!crossOriginIsolated){
+      if(sessionStorage.getItem('sh2-isolation-reload'))throw new Error('Browser isolation could not start. Close this tab and reopen the site in current Chrome, Edge, or Brave.');
+      sessionStorage.setItem('sh2-isolation-reload','1');
+      if(navigator.serviceWorker.controller)location.reload();
+      else navigator.serviceWorker.addEventListener('controllerchange',()=>location.reload(),{once:true});
+      return;
+    }
+    sessionStorage.removeItem('sh2-isolation-reload');
+    if(!navigator.gpu)throw new Error('WebGPU is required. Use a current desktop Chrome, Edge, or Brave browser with hardware acceleration.');
+    input.disabled=false;message.textContent='Ready. Select the ISO to play.';
+    input.addEventListener('change',()=>{
+      const file=input.files[0];if(!file)return;
+      if(file.size!==3879108608){message.textContent='This build requires the USA v2.01 disc image (3,879,108,608 bytes).';return;}
+      window.sh2DiscFile=file;
+      const frame=document.createElement('iframe');frame.title='Silent Hill 2';frame.allow='autoplay; fullscreen; gamepad';frame.allowFullscreen=true;frame.src='./player.html';
+      document.getElementById('setup').hidden=true;document.body.appendChild(frame);
+    });
+  }catch(error){message.textContent=error.message;}
+})();
+</script>
+</html>
